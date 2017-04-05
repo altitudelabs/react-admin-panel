@@ -1,0 +1,11 @@
+.compose-grid {
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+  .item {
+    position: relative;
+  }
+}

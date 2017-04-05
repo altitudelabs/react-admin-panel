@@ -1,0 +1,30 @@
+
+/* * * * * * * * * * * * * * * * * * * * * * *
+ * Device screen size
+ * Usage: @include responsive(mobile) { ... }
+ *        @include responsive(transition){ ... }
+ *        @include responsive(desktop) { ... }
+ * * * * * * * * * * * * * * * * * * * * * * */
+
+$tablet-min-width: 768px;
+$tablet-max-width: 1024px;
+$desktop-max-width: 1280px;
+/* * * * * * * * * * * * * * * * * * * * * * *
+ * Helpers / Functions
+ * Usage:
+ *        @include responsive(mobile){ ... }
+ * * * * * * * * * * * * * * * * * * * * * * */
+
+@mixin responsive($media) {
+  @if $media == mobile {
+    @media only screen and (max-width: $tablet-min-width - 1) { @content; }
+  }
+
+  @if $media == tablet {
+    @media only screen and (min-width: $tablet-min-width) and (max-width: $tablet-max-width) { @content; }
+  }
+
+  @if $media == desktop {
+    @media only screen and (min-width: $tablet-max-width + 1) { @content; }
+  }
+}

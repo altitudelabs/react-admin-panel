@@ -1,0 +1,42 @@
+{
+  "name": "react-admin-panel",
+  "version": "1.0.0",
+  "description": "Group of react components for admin panel in Altitude Labs",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel src -d ./lib",
+    "build:watch": "nodemon --watch src -e js -x \"npm run build\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/altitudelabs/react-admin-panel.git"
+  },
+  "author": "Altitude Labs",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "15.4.2",
+    "recompose": "^0.22.0",
+    "lodash": "^4.16.4"
+  },
+  "devDependencies": {
+    "autoprefixer-loader": "^3.2.0",
+    "babel-cli": "^6.24.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "eslint": "2.10.2",
+    "eslint-config-airbnb": "9.0.1",
+    "eslint-plugin-import": "1.8.0",
+    "eslint-plugin-jsx-a11y": "1.2.0",
+    "eslint-plugin-react": "5.1.1",
+    "extract-text-webpack-plugin": "^1.0.1"
+  },
+  "bugs": {
+    "url": "https://github.com/altitudelabs/react-admin-panel/issues"
+  },
+  "homepage": "https://github.com/altitudelabs/react-admin-panel#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0"
+  }
+}
