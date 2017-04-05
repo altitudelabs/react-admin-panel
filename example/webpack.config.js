@@ -1,6 +1,7 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const prod = process.env.NODE_ENV === 'production';
 const webpack = require('webpack');
+
+const prod = process.env.NODE_ENV === 'production';
 module.exports = {
   context: `${__dirname}/client`,
   entry: [
@@ -13,7 +14,7 @@ module.exports = {
     publicPath: '/',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /.js$/,
         loader: 'babel-loader',
@@ -21,12 +22,11 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        // loaders: ['style', 'css?sourceMap', 'sass?sourceMap'],
-        loader: ExtractTextPlugin.extract(
-          'style', // backup loader when not building .css file
-          !prod ? 'css?sourceMap!autoprefixer-loader!sass?sourceMap'  // loaders
-                : 'css!autoprefixer-loader!sass'
-        ),
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader', // backup loader when not building .css file
+          use: prod ? 'css-loader!autoprefixer-loader!sass-loader'
+                    : 'css-loader?sourceMap!autoprefixer-loader!sass-loader?sourceMap',
+        }),
       },
       {
         test: /([\w\-\/]+\.(?:eot|woff|ttf|otf|ico|jpeg|png|jpg))/,
@@ -36,12 +36,11 @@ module.exports = {
   },
   devServer: {
     contentBase: './client',
-    output: {
-      filename: 'bundle.js',
-      publicPath: '/',
+    historyApiFallback: {
+      index: 'index.html',
     },
   },
-  devtool: !prod ? 'source-map' : null,
+  devtool: prod ? false : 'source-map',
   plugins: [
     new ExtractTextPlugin('bundle.css'),
     new webpack.ProvidePlugin({

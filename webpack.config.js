@@ -1,18 +1,30 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const prod = process.env.NODE_ENV === 'production';
 const webpack = require('webpack');
+
+const prod = process.env.NODE_ENV === 'production';
+
 module.exports = {
   context: `${__dirname}`,
   entry: [
     `${__dirname}/src/index.js`,
   ],
   output: {
-    path: `${__dirname}/dist`,
+    path: `${__dirname}/lib`,
     filename: 'index.js',
     publicPath: '/',
+    libraryTarget: 'umd',
+  },
+  target: 'node',
+  externals: {
+    react: {
+      root: 'React',
+      commonjs2: 'react',
+      commonjs: 'react',
+      amd: 'react',
+    },
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /.js$/,
         loader: 'babel-loader',
@@ -20,12 +32,11 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        // loaders: ['style', 'css?sourceMap', 'sass?sourceMap'],
-        loader: ExtractTextPlugin.extract(
-          'style', // backup loader when not building .css file
-          !prod ? 'css?sourceMap!autoprefixer-loader!sass?sourceMap'  // loaders
-                : 'css!autoprefixer-loader!sass'
-        ),
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader', // backup loader when not building .css file
+          use: prod ? 'css-loader!autoprefixer-loader!sass-loader'
+                    : 'css-loader?sourceMap!autoprefixer-loader!sass-loader?sourceMap',
+        }),
       },
       {
         test: /([\w\-\/]+\.(?:eot|woff|ttf|otf|ico|jpeg|png|jpg))/,
@@ -40,7 +51,7 @@ module.exports = {
       publicPath: '/',
     },
   },
-  devtool: !prod ? 'source-map' : null,
+  devtool: !prod ? 'source-map' : false,
   plugins: [
     new ExtractTextPlugin('bundle.css'),
     new webpack.ProvidePlugin({

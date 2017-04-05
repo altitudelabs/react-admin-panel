@@ -2,7 +2,8 @@ import React, { PropTypes, Component } from 'react';
 import Touchable from '../../composeComponents/Ripple/Touch';
 import LeftMenu from '../LeftMenu';
 import leftMenuAction from '../LeftMenu/action';
-
+import { Checkbox } from 'react-admin-panel';
+console.log(Checkbox);
 class App extends Component {
   constructor(props) {
     super(props);

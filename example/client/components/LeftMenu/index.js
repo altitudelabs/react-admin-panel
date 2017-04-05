@@ -1,12 +1,15 @@
-import './style.scss';
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import className from 'classnames';
-import { IndexLink, Link } from 'react-router'
+import { IndexLink, Link } from 'react-router';
+
+import './style.scss';
+
 import Touchable from '../../composeComponents/Ripple/Touch';
 import action from './action';
 import reducer from './reducer';
 import Divider from '../../composeComponents/Divider';
+
 class LeftMenu extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.open !== nextProps.open) {
@@ -37,8 +40,6 @@ class LeftMenu extends Component {
         label: 'sample',
       },
     ];
-
-
 
     // TODO may be able to optimize height calc like flipkart on touchmove
     return (

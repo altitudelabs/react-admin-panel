@@ -8,11 +8,11 @@ module.exports = {
     }
   },
   'globals': {
-    'HttpError': true,
-    'PG': true,
     '_': true,
     '__ENV__': true,
     'customFetch': true,
+    'window': true,
+    'document': true,
   },
   'rules': {
     'strict': 0,
@@ -26,13 +26,17 @@ module.exports = {
     'no-restricted-syntax': ['error', 'WithStatement'],
     'no-return-assign': 0,
     'key-spacing': ['error', { 'mode': 'minimum' }],
-    'import/no-unresolved': 0,
     'max-len': 0,
     'no-param-reassign': 0,
     'no-console': 0,
     'space-before-function-paren': ['error', 'never'],
     'func-names': 0,
+    'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx'] }],
     'newline-per-chained-call': 0,
+    'no-useless-escape': 0,
+    'import/no-extraneous-dependencies': 0,
+    'import/no-unresolved': 0,
+    'import/extensions': 0,
     // 'react/jsx-closing-bracket-location': [1, 'props-aligned']
   },
   'plugins': [

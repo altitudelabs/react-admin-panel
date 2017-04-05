@@ -1,1 +1,9 @@
-export default () => { console.log('I am nothing right now'); };
+import LeftMenu from './LeftMenu';
+import Checkbox from './Checkbox';
+import List from './List';
+
+export {
+  LeftMenu,
+  Checkbox,
+  List,
+};

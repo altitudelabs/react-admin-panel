@@ -1,5 +1,3 @@
-import './main.scss';
-import './favicon.ico';
 import React from 'react';
 import { render } from 'react-dom';
 import {
@@ -13,9 +11,12 @@ import {
 import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import store from './store';
 import { createHistory } from 'history';
 
+import './main.scss';
+import './favicon.ico';
+
+import store from './store';
 import App from './components/App';
 import {
   action as LeftMenuAction,
@@ -50,5 +51,5 @@ render(
       </Route>
     </Router>
   </Provider>,
-  document.getElementById('app')
+  document.getElementById('app'),
 );
