@@ -18,6 +18,13 @@ npm run build:watch
 ```
 *should have webpack dev server running on 8080*
 
+### Deploy example to gh pages
+```
+cd example
+npm run deploy-gh
+```
+*should have the example running on https://altitudelabs.github.io/react-admin-panel/*
+
 ### Folder structure
 ```
 project

@@ -1,7 +1,7 @@
-import './style.scss';
-
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
+
+import './style.scss';
 
 class Checkbox extends Component {
   constructor(props) {
@@ -42,7 +42,7 @@ class Checkbox extends Component {
         onClick={this.onChange}
         className={classnames(
           'checkbox',
-          className
+          className,
         )}
       >
         <input
@@ -59,14 +59,14 @@ class Checkbox extends Component {
 
 Checkbox.defaultProps = {
   checked: false,
+  className: '',
+  onCheck: () => {},
 };
 
 Checkbox.propTypes = {
-  style: PropTypes.object,
-  styles: PropTypes.object,
   checked: PropTypes.bool,
-  onCheck: PropTypes.func,
   className: PropTypes.string,
+  onCheck: PropTypes.func,
 };
 
 
