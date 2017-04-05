@@ -24086,7 +24086,7 @@
 	// Create an enhanced history that syncs navigation events with the store
 	var browserHistory = (0, _reactRouter.useRouterHistory)(_history.createHistory)({
 	  // NOTE for gh-pages
-	  basename: '/template-react'
+	  basename: '/react-admin-panel'
 	});
 	var history = (0, _reactRouterRedux.syncHistoryWithStore)(browserHistory, _store2.default);
 	
