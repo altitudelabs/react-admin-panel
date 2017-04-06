@@ -5,18 +5,22 @@ Group of components used for admin panel UI in Altitude Labs
 This library aims to provide various UI Components that can be used for admin panel projects in Altitude Labs.
 
 ### Build
-TBD
+```
+npm install
+npm run build
+```
 
 ### Development
-TBD
-
-### Example
 ```
-cd example
 npm install
-npm run build:watch
+npm run build:example // Terminal 1. Build react-admin-panel, and place it inside example's node_module directory
+
+cd example 
+npm install
+npm run build:watch // Terminal 2. Build example
 ```
 *should have webpack dev server running on 8080*
+
 
 ### Deploy example to gh pages
 ```
@@ -24,6 +28,7 @@ cd example
 npm run deploy-gh
 ```
 *should have the example running on https://altitudelabs.github.io/react-admin-panel/*
+
 
 ### Folder structure
 ```
