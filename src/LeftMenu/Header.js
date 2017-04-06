@@ -3,14 +3,13 @@ import calssNames from 'classnames';
 
 const Header = () => {
   const itemClass = calssNames(
-    'header'
+    'header',
   );
   return (
     <div
       className={itemClass}
     >
-      {'LOGO'}
-      <div className={'logo'}></div>
+       <img className='logo' src="/asset/image/logo.png" alt="Logo" />
     </div>
   );
 };

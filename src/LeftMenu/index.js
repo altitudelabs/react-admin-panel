@@ -6,8 +6,10 @@ import classnames from 'classnames';
 import './style.scss';
 
 import Header from './Header';
+import DropdownMenu from '../DropdownMenu';
 
-const checkIsLink = link => link.link && !link.links; // link does not have any children
+const checkIsLink = link => link.link && !link.links;
+const checkIsArrayOfLinks = link => link.links && !link.link;
 
 class LeftMenu extends Component {
   constructor(props) {
@@ -34,18 +36,28 @@ class LeftMenu extends Component {
     // check if any link exact matches the current route
     const isMatch = _.some(sectionLinks, link => matchPath(link, true));
     return (
-      <div className={classnames('section', { match: isMatch })} key={section.sectionHeader}>
-        <div className={'section-header'}>
-          <span>{section.sectionHeader}</span>
-        </div>
+      <div
+        className={classnames('section', { match: isMatch })}
+        key={section.sectionHeader}
+      >
+        <div className={'section-header'} >{section.sectionHeader}</div>
         <div className={'section-links'}>
+<<<<<<< HEAD
           {section.links.map(link => this.renderLink(link))}
+=======
+          {section.links.map(link => (
+            <div key={link.label}>
+              {this.renderLink(link)}
+            </div>
+          ))}
+>>>>>>> fix leftmenu with dropdown
         </div>
       </div>
     );
   }
 
   renderLink(link) {
+<<<<<<< HEAD
     if (!link.link) {
       return (
         <div key={link.label} className={'section-link'}>
@@ -58,6 +70,27 @@ class LeftMenu extends Component {
         {link.label}
       </NavLink>
     );
+=======
+    if (checkIsLink(link)) {
+      return (
+        <a href={link.link} className="link" key={link.label}>
+          {link.label}
+        </a>
+      );
+    }
+    if (checkIsArrayOfLinks(link)) {
+      return (
+        <DropdownMenu title={link.label}>
+          {link.links.map(childLink =>
+            <div key={childLink.label}>
+              {this.renderLink(childLink)}
+            </div>,
+            )
+          }
+        </DropdownMenu>
+      );
+    }
+>>>>>>> fix leftmenu with dropdown
   }
 
   render() {
@@ -122,8 +155,8 @@ LeftMenu.defaultProps = {
           link: '/admin/promotions',
         },
         {
-          label: 'Anlytics',
-          link: '/admin/anlytics',
+          label: 'Analytics',
+          link: '/admin/analytics',
         },
       ],
     },

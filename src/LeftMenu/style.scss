@@ -19,7 +19,7 @@
   color: #9FA8BA;
 
   & > .header {
-    padding: 0px $horizontal-padding;
+    padding: 0 0;
     height: $header-height;
     line-height: $header-height;
     background-color: #407BFF;
@@ -37,10 +37,9 @@
     font-weight: bold;
     text-transform: uppercase;
   }
-  .section-links {
-  }
 
-  .section-link {
+  .link {
+    display: block;
     padding: 12px $horizontal-padding;
     cursor: pointer;
 
@@ -48,5 +47,16 @@
       background-color: #475066;
       color: #ffffff;
     }
+
+  }
+  .dropdown {
+    @extend .link
+  }
+
+  .logo {
+    padding-top: 10.6px;
+    padding-left:19.3px;
   }
 }
+
+
