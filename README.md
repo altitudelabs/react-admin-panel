@@ -24,6 +24,7 @@ npm run build:watch // Terminal 2. Build example
 
 
 ### Deploy example to gh pages
+*Note the entry point HTML for this deploy is gh.html
 ```
 cd example
 npm run deploy-gh
