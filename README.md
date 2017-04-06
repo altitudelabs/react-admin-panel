@@ -12,6 +12,7 @@ npm run build
 
 ### Development
 *If you are using nvm, simply run `nvm use` to use node & npm version intended for this project*
+
 *Following commands will need to be run in two terminals to hot reload changes in both /example and /react-admin-panel*
 ```
 npm install
