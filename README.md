@@ -42,6 +42,6 @@ project
 │   |   ...
 │
 └───lib // main package.json directory. 
-    │   // This is where babelified js files end up in, to be bundled by tools like webpack by the library users.
+    │   // This is where webpack outputs end up in
     │   ...
  ```
