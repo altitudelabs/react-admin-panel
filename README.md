@@ -7,20 +7,23 @@ This library aims to provide various UI Components that can be used for admin pa
 ### Build
 ```
 npm install
-npm run build
+npm run build //builds to /lib which is used when library is npm installed elsewhere
 ```
 
 ### Development
 *If you are using nvm, simply run `nvm use` to use node & npm version intended for this project*
+
+*Following commands will need to be run in two terminals to hot reload changes in both /example and /react-admin-panel*
 ```
 npm install
 npm run build:example // Terminal 1. Build react-admin-panel, and place it inside example's node_module directory
-
+```
+```
 cd example 
 npm install
 npm run build:watch // Terminal 2. Build example
 ```
-*should have webpack dev server running on 8080*
+*Once both the above instances are up, a hot reload dev server will be running on localhost:8080*
 
 
 ### Deploy example to gh pages
@@ -42,6 +45,6 @@ project
 │   |   ...
 │
 └───lib // main package.json directory. 
-    │   // This is where babelified js files end up in, to be bundled by tools like webpack by the library users.
+    │   // This is where webpack outputs end up in
     │   ...
  ```
