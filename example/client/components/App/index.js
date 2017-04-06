@@ -1,30 +1,22 @@
-import React, { PropTypes, Component } from 'react';
-import Touchable from '../../composeComponents/Ripple/Touch';
-import LeftMenu from '../LeftMenu';
-import leftMenuAction from '../LeftMenu/action';
-import { Checkbox } from 'react-admin-panel';
-console.log(Checkbox);
-class App extends Component {
-  constructor(props) {
-    super(props);
+import React, { PropTypes } from 'react';
+import { Checkbox, LeftMenu } from 'react-admin-panel';
 
-    this.state = {
-      show: false,
-    };
-  }
-  render() {
-    return (
-      <div>
-        <div onClick={() => { leftMenuAction.open(); }} style={{ position: 'relative' }}>
-          <Touchable />
-          click me
-        </div>
-        <LeftMenu />
-        {this.props.children}
+import Touchable from '../../composeComponents/Ripple/Touch';
+import leftMenuAction from '../LeftMenu/action';
+
+const App = (props) => {
+  return (
+    <div>
+      <Checkbox />
+      <div onClick={() => { leftMenuAction.open(); }} style={{ position: 'relative' }}>
+        <Touchable />
+        click me
       </div>
-    );
-  }
-}
+      <LeftMenu />
+      {props.children}
+    </div>
+  );
+};
 
 App.defaultProps = {
 };
