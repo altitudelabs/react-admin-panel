@@ -1,15 +1,22 @@
+.left-menu-container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  flex-grow: 1;
+
+  & > .content-container {
+    flex-grow: 1;
+  }
+}
 .left-menu {
   $horizontal-padding: 18px;
   $header-height: 40px;
 
-  position: fixed;
-  height: 100%;
-  top: 0;
-  left: 0;
+  flex-shrink: 1;
   width: 300px;
   background-color: #343D50;
   user-select: none;
-  overflow-y: scroll;
+  color: #9FA8BA;
 
   & > .header {
     padding: 0px $horizontal-padding;
@@ -20,97 +27,26 @@
     letter-spacing: 1.1px;
   }
 
-  .menu {
-    padding-top: 22px;
-
-    .header {
-      font-size: 10px;
-      padding: 8px $horizontal-padding;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-
-    .menu-item {
-      padding: 9px $horizontal-padding;
-      cursor: pointer;
-
-      &:hover, &.open, > .active, > .active + .sub-menu {
-        background-color: #475065;
-        color: #ffffff;
-      }
-
-      a {
-        display: block;
-        cursor: pointer;
-        text-decoration: none;
-      }
-    }
+  .section {
+    padding: 20px 0px;
+  }
+  .section-header {
+    color: #95989A;
+    font-size: 10px;
+    padding: 4px $horizontal-padding;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .section-links {
   }
 
-  .dropdown {
-    .sub-menu {
-      display: none;
-    }
+  .section-link {
+    padding: 12px $horizontal-padding;
+    cursor: pointer;
 
-    > a {
-      position: relative;
-
-      &:after {
-        right: 0;
-        width: 0;
-        height: 0;
-        content: ' ';
-        top: calc(50% - 2px);
-        position: absolute;
-        border-top: 0;
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-bottom: 5px solid #95989A;
-      }
-    }
-
-    &.open {
-      > a {
-        &:after {
-          border-bottom: 0;
-          border-top: 5px solid #95989A;
-        }
-      }
-
-      .sub-menu {
-        display: block;
-      }
-    }
-
-    .menu-item {
-      padding-left: 0;
-
-      &:hover, &.open {
-        > a {
-          &:before {
-            background: #9FA8BA;
-          }
-        }
-      }
-
-      &:last-child {
-        padding-bottom: 0;
-      }
-
-      a {
-        padding-left: 18px;
-        position: relative;
-
-        &:before {
-          left: 0;
-          width: 12px;
-          height: 1px;
-          content: ' ';
-          position: absolute;
-          top: calc(50% - 1px);
-          background: #95989A;
-        }
-      }
+    &:hover {
+      background-color: #475066;
+      color: #ffffff;
     }
   }
 }

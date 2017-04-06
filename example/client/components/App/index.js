@@ -1,20 +1,14 @@
 import React, { PropTypes } from 'react';
-import { Checkbox, LeftMenu } from 'react-admin-panel';
 
-import Touchable from '../../composeComponents/Ripple/Touch';
-import leftMenuAction from '../LeftMenu/action';
+import { Checkbox, LeftMenu } from 'react-admin-panel';
+import 'react-admin-panel/lib/bundle.css'; // TODO this should be automated better
 
 const App = (props) => {
   return (
-    <div>
-      <Checkbox />
-      <div onClick={() => { leftMenuAction.open(); }} style={{ position: 'relative' }}>
-        <Touchable />
-        click me
-      </div>
-      <LeftMenu />
+    <LeftMenu>
+      hey!
       {props.children}
-    </div>
+    </LeftMenu>
   );
 };
 

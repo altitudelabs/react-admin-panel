@@ -28,6 +28,16 @@ module.exports = {
                     : 'css-loader?sourceMap!autoprefixer-loader!sass-loader?sourceMap',
         }),
       },
+      // TODO needs to be removed once style import is automated
+      // only needed for bundle.css handling
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader', // backup loader when not building .css file
+          use: prod ? 'css-loader!autoprefixer-loader'
+                    : 'css-loader?sourceMap!autoprefixer-loader',
+        }),
+      },
       {
         test: /([\w\-\/]+\.(?:eot|woff|ttf|otf|ico|jpeg|png|jpg))/,
         loader: 'file-loader?name=[path][name].[ext]',

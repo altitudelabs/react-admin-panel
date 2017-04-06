@@ -5,124 +5,156 @@ import classnames from 'classnames';
 import './style.scss';
 
 import Header from './Header';
-import Menu from './Menu';
+
+const checkIsLink = link => link.link && !link.links; // link does not have any children
 
 class LeftMenu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedKey: -1,
     };
 
-    this.onSelected = this.onSelected.bind(this);
+    this.renderSection = this.renderSection.bind(this);
   }
 
-  componentWillMount() {
-    let selectedKey = -1;
-    const { router, items } = this.props;
+  renderSection(section) {
+    const getAllLinks = (links) => {
+      const linksArray = links.map((link) => {
+        if (checkIsLink(link)) {
+          return link.link;
+        }
+        return getAllLinks(link.links);
+      });
+      return _.flattenDeep(linksArray);
+    };
 
-    items.forEach((menu, index) => {
-      const menuItems = menu.items || [];
-      const filter = menuItems.filter(item => item.link && router.isActive(item.link))[0];
-      if (filter) selectedKey = index;
-    });
+    const sectionLinks = getAllLinks(section.links);
 
-    if (selectedKey > -1) this.setState({ selectedKey });
+    // check if any link exact matches the current route
+    const isMatch = _.some(sectionLinks, link => this.props.router.isActive(link, true));
+
+    return (
+      <div className={classnames('section', { match: isMatch })} key={section.sectionHeader}>
+        <div className={'section-header'}>
+          <span>{section.sectionHeader}</span>
+        </div>
+        <div className={'section-links'}>
+          {section.links.map(link => (
+            <div className={'section-link'} key={link.label}>
+              {this.renderLink(link)}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   }
 
-  onSelected(selectedKey) {
-    const selectedKeyState = this.state.selectedKey || -1;
-    if (selectedKeyState === selectedKey) {
-      this.setState({ selectedKey: -1 });
-    } else {
-      this.setState({ selectedKey });
+  renderLink(link, level = 1) {
+    console.log(link, level);
+    const isLink = checkIsLink(link);
+
+    if (isLink) {
+      return (
+        <div className={'link'}>
+          link
+        </div>
+      );
     }
-  }
-
-  renderItems() {
-    const { selectedKey } = this.state;
-    const { items } = this.props;
-
-    return items.map((item, key) => (
-      <Menu
-        index={key}
-        item={item}
-        active={selectedKey === key}
-        onSelected={() => this.onSelected(key)}
-      />
-    ));
+    return (
+      <div>
+        links
+      </div>
+    );
   }
 
   render() {
-    const { className } = this.props;
-
+    const {
+      links,
+      width,
+      children,
+    } = this.props;
     return (
-      <div className={classnames(className)}>
-        <Header />
-        {this.renderItems()}
+      <div className={'left-menu-container'}>
+        <div
+          className={'left-menu'}
+          style={{
+            width,
+          }}
+        >
+          <Header />
+          {links.map(this.renderSection)}
+        </div>
+        <div className={'content-container'}>
+          {children}
+        </div>
       </div>
     );
   }
 }
 
 LeftMenu.defaultProps = {
-  items: [
+  links: [
     {
-      header: 'General',
-      items: [
+      sectionHeader: 'General',
+      links: [
         {
-          name: 'Transaction',
-          link: '/admin/transactions',
-          items: [
+          label: 'Transaction',
+          links: [
             {
-              name: 'All',
+              label: 'All',
               indexRoute: true,
               link: '/admin/transactions',
             },
             {
-              name: 'Current',
+              label: 'Current',
               link: '/admin/transactions/current',
             },
             {
-              name: 'Historical',
+              label: 'Historical',
               link: '/admin/transactions/historical',
             },
           ],
         },
         {
-          name: 'Users',
+          label: 'Users',
           link: '/admin/users',
         },
         {
-          name: 'Delivery Schedule',
+          label: 'Delivery Schedule',
           link: '/admin/delivery-schedule',
         },
         {
-          name: 'Promotion',
+          label: 'Promotion',
           link: '/admin/promotions',
         },
         {
-          name: 'Anlytics',
+          label: 'Anlytics',
           link: '/admin/anlytics',
         },
       ],
     },
     {
-      header: 'Account',
-      items: [
+      sectionHeader: 'Account',
+      links: [
         {
-          name: 'Logout',
+          label: 'Logout',
           link: '/logout',
         },
       ],
     },
   ],
-  className: 'left-menu',
+  width: 200,
+  children: null,
 };
 
 LeftMenu.propTypes = {
-  items: PropTypes.array,
-  className: PropTypes.string,
+  links: PropTypes.array,
+  router: PropTypes.object.isRequired,
+  width: PropTypes.number,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 };
 
 
