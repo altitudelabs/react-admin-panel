@@ -11,6 +11,7 @@ npm run build
 ```
 
 ### Development
+*If you are using nvm, simply run `nvm use` to use node & npm version intended for this project*
 ```
 npm install
 npm run build:example // Terminal 1. Build react-admin-panel, and place it inside example's node_module directory
