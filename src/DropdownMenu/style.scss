@@ -1,0 +1,18 @@
+.wrapcontent {
+	display: inline-block;
+}
+
+.triangle {
+	@extend .wrapcontent;
+	float: right;
+	margin-right: 18px;
+}
+
+.triangle-up {
+	@extend .triangle;
+	transform: rotate(180deg);
+}
+
+.dropdown-list {
+	margin-left:12px;
+}
