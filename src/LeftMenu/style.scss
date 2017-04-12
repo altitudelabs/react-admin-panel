@@ -37,10 +37,9 @@
     font-weight: bold;
     text-transform: uppercase;
   }
-  .section-links {
-  }
 
-  .section-link {
+  .link {
+    display: block;
     padding: 12px $horizontal-padding;
     cursor: pointer;
 
@@ -48,5 +47,13 @@
       background-color: #475066;
       color: #ffffff;
     }
+
   }
+  .dropdown {
+    @extend .link
+  }
+
+  
 }
+
+
