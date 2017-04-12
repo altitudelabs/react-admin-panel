@@ -7,7 +7,7 @@ This library aims to provide various UI Components that can be used for admin pa
 ### Build
 ```
 npm install
-npm run build
+npm run build //builds to /lib which is used when library is npm installed elsewhere
 ```
 
 ### Development
