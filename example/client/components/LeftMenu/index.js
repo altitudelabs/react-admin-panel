@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import className from 'classnames';
-import { IndexLink, Link } from 'react-router';
+import { IndexLink, Link, browserHistory } from 'react-router';
 
 import './style.scss';
 
@@ -18,12 +18,16 @@ class LeftMenu extends Component {
   }
 
   renderLink(link, key) {
-    const LinkComponent = link.href === '/' ? IndexLink : Link;
+    // const LinkComponent = link.href === '/' ? IndexLink : Link;
     return (
       <li className={'item'} key={key || null}>
-        <LinkComponent to={link.href} className={'fill'} activeClassName={'current-link'}>
+        <div
+          onClick={() => browserHistory.push(link.href)}
+          activeClassName={'current-link'}
+        >
+          <Touchable />
           {_.startCase(link.label)}
-        </LinkComponent>
+        </div>
       </li>
     );
   }
@@ -82,7 +86,7 @@ const mapStateToProps = (state) => {
 };
 
 const connectedLeftMenu = connect(
-  mapStateToProps
+  mapStateToProps,
 )(LeftMenu);
 
 export default connectedLeftMenu;
