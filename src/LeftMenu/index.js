@@ -89,7 +89,14 @@ class LeftMenu extends Component {
             width,
           }}
         >
+<<<<<<< HEAD
           {renderHeader()}
+=======
+          <Header
+            headerLogoClassName={this.props.headerLogoClassName}
+            headerLogoSrc={this.props.headerLogoSrc}
+          />
+>>>>>>> Fixed header image
           {links.map(this.renderSection)}
         </div>
         <div className={'content-container'}>
