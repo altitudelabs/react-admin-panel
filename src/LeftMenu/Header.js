@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
 const Header = (props) => {
@@ -10,7 +11,7 @@ const Header = (props) => {
     <div
       className={itemClass}
     >
-       <div className={props.headerLogoClassName}/>
+      <div className={props.headerLogoClassName} />
     </div>
   );
 };
@@ -19,9 +20,8 @@ Header.defaultProps = {
 };
 
 Header.propTypes = {
-  headerLogoClassName: PropTypes.string
+  headerLogoClassName: PropTypes.string,
 };
 
 
 export default Header;
-t
