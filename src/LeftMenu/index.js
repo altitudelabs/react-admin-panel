@@ -88,7 +88,7 @@ class LeftMenu extends Component {
             width,
           }}
         >
-          <Header />
+          <Header headerLogoClassName={this.props.headerLogoClassName}/>
           {links.map(this.renderSection)}
         </div>
         <div className={'content-container'}>
@@ -162,6 +162,7 @@ LeftMenu.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
+  headerLogoClassName: PropTypes.string,
 };
 
 
