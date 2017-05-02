@@ -6,7 +6,7 @@ import 'react-admin-panel/lib/bundle.css'; // TODO this should be automated bett
 
 const App = (props) => {
   return (
-    <LeftMenu>
+    <LeftMenu headerLogoSrc={'../../../client/asset/image/logo.png'}>
       hey!
       {props.children}
     </LeftMenu>

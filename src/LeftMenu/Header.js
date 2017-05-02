@@ -1,15 +1,16 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import calssNames from 'classnames';
 
-const Header = () => {
+const Header = (props) => {
   const itemClass = calssNames(
     'header',
   );
+
   return (
     <div
       className={itemClass}
     >
-       <img className='logo' src="/asset/image/logo.png" alt="Logo" />
+       <div className={props.headerLogoClassName}/>
     </div>
   );
 };
@@ -18,6 +19,7 @@ Header.defaultProps = {
 };
 
 Header.propTypes = {
+  headerLogoClassName: PropTypes.string
 };
 
 

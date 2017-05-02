@@ -42,35 +42,17 @@ class LeftMenu extends Component {
       >
         <div className={'section-header'} >{section.sectionHeader}</div>
         <div className={'section-links'}>
-<<<<<<< HEAD
-          {section.links.map(link => this.renderLink(link))}
-=======
           {section.links.map(link => (
             <div key={link.label}>
               {this.renderLink(link)}
             </div>
           ))}
->>>>>>> fix leftmenu with dropdown
         </div>
       </div>
     );
   }
 
   renderLink(link) {
-<<<<<<< HEAD
-    if (!link.link) {
-      return (
-        <div key={link.label} className={'section-link'}>
-          {link.label}
-        </div>
-      );
-    }
-    return (
-      <NavLink key={link.label} className={'link fill section-link'} to={link.link}>
-        {link.label}
-      </NavLink>
-    );
-=======
     if (checkIsLink(link)) {
       return (
         <a href={link.link} className="link" key={link.label}>
@@ -90,7 +72,6 @@ class LeftMenu extends Component {
         </DropdownMenu>
       );
     }
->>>>>>> fix leftmenu with dropdown
   }
 
   render() {
