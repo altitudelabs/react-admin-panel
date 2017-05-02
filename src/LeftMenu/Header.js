@@ -1,8 +1,8 @@
 import React, {PropTypes} from 'react';
-import calssNames from 'classnames';
+import classNames from 'classnames';
 
 const Header = (props) => {
-  const itemClass = calssNames(
+  const itemClass = classNames(
     'header',
   );
 
@@ -24,3 +24,4 @@ Header.propTypes = {
 
 
 export default Header;
+t
