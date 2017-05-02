@@ -12,7 +12,7 @@ const Header = (props) => {
       <div
         className={props.headerLogoClassName}
       />
-       <img src={props.headerLogoSrc}/>
+      <img src={props.headerLogoSrc} />
     </div>
   );
 };
