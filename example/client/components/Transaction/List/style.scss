@@ -1,0 +1,115 @@
+$container-border-color: #D5D5D5;
+$item-border-color: #EAEAEA;
+
+.property-list {
+  min-width: 880px;
+  color: #363636;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border: 1px solid $container-border-color;
+  border-bottom: none;
+  border-radius: 5px;
+  background-color: #FFFFFF;
+  margin-top: 20px;
+
+  img {
+    max-height:100%;
+  }
+
+  .thumbnail{
+    width:69px;
+    height:53px;
+    border: 1px solid #95989A;
+
+  }
+
+  &.withPagination {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .header {
+    color: #1A1A1A;
+    font-weight: bold;
+    height: 49px;
+  }
+
+  .row {
+    height: 53px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 0.5px solid $item-border-color;
+    &:last-child {
+      border-bottom: 0px;
+    }
+  }
+
+  .column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    flex-basis: 0;
+    flex-grow: 1;
+    text-align: center;
+    text-transform: capitalize;
+
+    &.sortable {
+      cursor: pointer;
+      &:hover {
+        background-color: #FAEFEF;
+      }
+    }
+
+    &.no-capitalize {
+      text-transform: none;
+    }
+
+    &.header-col-0 {
+      display:none
+    }
+
+    &.header-col-1 {
+      flex:0 0 210px
+    }
+
+    &.item-col-0 {
+      padding: 0;
+      margin: 0;
+      flex:0 0 69px;
+      box-sizing: border-box;
+    }
+
+    &.item-col-1 {
+      padding: 0 15px 0 15px;
+      margin: 0;
+      flex:0 0 140px;
+    }
+
+    // make superscript display properly
+    &.item-col-4 {
+      display: block;
+
+      sup {
+       display: inline;
+      }
+    }
+  }
+
+  .item {
+    color: #95989A;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #FAEFEF;
+    }
+    &.active {
+      background-color: #FAEFEF;
+    }
+  }
+
+
+}

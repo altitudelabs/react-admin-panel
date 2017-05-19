@@ -1,3 +1,5 @@
+@import "fonts";
+
 html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
@@ -5,7 +7,6 @@ html {
 }
 
 * {
-  font-family: 'Calibre';
   box-sizing: border-box;
   vertical-align: baseline;
   -webkit-font-smoothing: antialiased;
@@ -13,6 +14,10 @@ html {
   &:focus {
     outline: none;
   }
+}
+
+body {
+  font-size: 13px;
 }
 
 ul {

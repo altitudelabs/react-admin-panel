@@ -1,9 +1,11 @@
 import LeftMenu from './LeftMenu';
-import Checkbox from './Checkbox';
+import DropdownMenu from './DropdownMenu';
 import List from './List';
+import Nav from './Nav';
 
 export {
   LeftMenu,
-  Checkbox,
+  DropdownMenu,
   List,
+  Nav,
 };

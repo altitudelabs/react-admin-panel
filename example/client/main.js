@@ -18,9 +18,8 @@ import './favicon.ico';
 
 import store from './store';
 import App from './components/App';
-import {
-  action as LeftMenuAction,
-} from './components/LeftMenu';
+import ListTransaction from './components/Transaction/List';
+
 // Needed for onTouchTap
 // Check this repo:
 // https://github.com/zilverline/react-tap-event-plugin
@@ -37,17 +36,10 @@ render(
   <Provider store={store}>
     {/* Tell the Router to use our enhanced history */}
     <Router history={history}>
-      <Route
-        path={'/'}
-        onChange={(prevState, nextState) => {
-          if (nextState.location.action !== 'POP') {
-            window.scrollTo(0, 0);
-          }
-          LeftMenuAction.close();
-        }}
-      >
+      <Route path={'/'} >
         <IndexRoute component={App} />
         <Route path="*" component={App} />
+        <Route path="admin/transactions" component={ListTransaction} />
       </Route>
     </Router>
   </Provider>,

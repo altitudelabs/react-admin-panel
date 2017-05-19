@@ -1,0 +1,27 @@
+$header-height: 52px;
+$left-menu-width: 200px;
+
+$left-menu-title-color: #95989A;
+$left-menu-background-color: #343D50;
+$left-menu-active-link-color: #ffffff;
+$left-menu-inactive-link-color: #9FA8BA;
+$container-border-color: #D5D5D5;
+
+$bread-link-color: #71777C;
+$base-span-color: #95989A;
+$button-color: #343D50;
+
+$main-container-vertical-padding: 30px;
+$main-container-horizontal-padding: 51px;
+$main-container-min-width: 500px;
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}

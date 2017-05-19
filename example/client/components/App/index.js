@@ -1,20 +1,24 @@
 import React, { PropTypes } from 'react';
-
-import { Checkbox, LeftMenu } from 'react-admin-panel';
+import { connect } from 'react-redux';
+import { Checkbox, LeftMenu, Nav } from 'react-admin-panel';
 import 'react-admin-panel/lib/bundle.css'; // TODO this should be automated better
 
 const App = (props) => {
   return (
-    <LeftMenu
-      headerLogoSrc={require('../../../client/asset/image/logo.png')}>
+    <div>
+      <LeftMenu
+        headerLogoSrc={require('../../../client/asset/image/altitude-logo.png')}
+      >
       hey!
       {props.children}
-    </LeftMenu>
+      </LeftMenu>
+      <Nav router={props.router} />
+    </div>
   );
 };
 
 App.defaultProps = {
-};
+};  
 
 App.propTypes = {
   children: PropTypes.oneOfType([
@@ -23,4 +27,10 @@ App.propTypes = {
   ]),
 };
 
-export default App;
+const mapStateToProps = (store) => {
+  return {
+    router: store.routing.locationBeforeTransitions,
+  };
+};
+
+export default connect(mapStateToProps)(App);

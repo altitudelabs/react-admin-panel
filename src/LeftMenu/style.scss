@@ -1,50 +1,63 @@
 .left-menu-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
   display: flex;
   flex-direction: row;
   align-items: stretch;
   flex-grow: 1;
 
   & > .content-container {
-    flex-grow: 1;
+    height: 0%
   }
 }
 .left-menu {
   $horizontal-padding: 18px;
-  $header-height: 40px;
-
-  flex-shrink: 1;
-  width: 300px;
-  background-color: #343D50;
+  $header-height: 52px;
+  flex-shrink: 0;
+  background-color: #363636;
   user-select: none;
   color: #9FA8BA;
 
   & > .header {
-    padding: 0 0;
-    height: $header-height;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    height: $header-height; 
     line-height: $header-height;
-    background-color: #407BFF;
+    background-color: #00017A;
     color: #ffffff;
     letter-spacing: 1.1px;
   }
 
   .section {
-    padding: 20px 0px;
+    padding: 23px 0 0 0 ;
   }
   .section-header {
-    color: #95989A;
-    font-size: 10px;
-    padding: 4px $horizontal-padding;
-    font-weight: bold;
+    display: block;
+    font-family: 'Avenir-Black';
+    font-size: 11px;
+    color: #D1D1D1;
+    letter-spacing: 0.05em;
+    line-height: 14px;
+    padding: 0 0 10px $horizontal-padding;
     text-transform: uppercase;
   }
 
   .link {
+    font-family: 'Avenir-Book';
+    font-size:14px;
     display: block;
-    padding: 12px $horizontal-padding;
+    color: #979797;
+    padding: 9px 0 9px $horizontal-padding;
+    letter-spacing: 0;
+    line-height: 18px;
+    text-decoration: none;
     cursor: pointer;
 
     &:hover {
-      background-color: #475066;
+      background-color: #535353;
       color: #ffffff;
     }
 
@@ -52,11 +65,32 @@
   .dropdown {
     @extend .link
   }
-
-  .logo {
-    padding-top: 10.6px;
-    padding-left:19.3px;
+  
+  .wrapcontent {
+    display: inline-block;
   }
-}
 
+  .triangle {
+    @extend .wrapcontent;
+    float: right;
+    margin-right: 18px;
+  }
+
+  .triangle-up {
+    @extend .triangle;
+    transform: rotate(180deg);
+  }
+
+  .dropdown-list {
+    margin-left:12px;
+  }
+
+  .header-logo {
+    width: 102.3px;
+    height: 32.4px;
+    
+  }
+
+  
+}
 

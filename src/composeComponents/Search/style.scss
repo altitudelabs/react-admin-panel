@@ -1,0 +1,16 @@
+.search {
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .button {
+    background-image: url(/asset/image/search-normal-small.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-clip:border-box;
+    &:hover {
+      background-image: url(/asset/image/search-hovered-small.png);
+    }
+  }
+}
