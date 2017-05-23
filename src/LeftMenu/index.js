@@ -54,8 +54,10 @@ class LeftMenu extends Component {
 
   renderLink(link) {
     if (checkIsLink(link)) {
+      const comparisonPath = this.props.location.pathname.substr(0, link.link.length);
+      const className = link.link === comparisonPath ? 'link highlighted' : 'link';
       return (
-        <a href={link.link} className="link" key={link.label}>
+        <a href={link.link} className={className} key={link.label}>
           {link.label}
         </a>
       );
@@ -166,6 +168,7 @@ LeftMenu.propTypes = {
     PropTypes.node,
   ]),
   headerLogoClassName: PropTypes.string,
+  location: PropTypes.object,
 };
 
 

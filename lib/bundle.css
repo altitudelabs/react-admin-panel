@@ -52,6 +52,10 @@
   .left-menu .logo {
     padding-top: 10.6px;
     padding-left: 19.3px; }
+
+.highlighted {
+  background-color: #475066;
+  color: #ffffff; }
 .wrapcontent, .triangle, .triangle-up {
   display: inline-block; }
 
@@ -176,3 +180,5 @@
       .list-table .row.header .sort.descending:after {
         border-bottom: 0;
         border-top: 5px solid #95989A; }
+
+/*# sourceMappingURL=bundle.css.map*/
