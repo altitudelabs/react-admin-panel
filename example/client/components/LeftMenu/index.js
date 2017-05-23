@@ -21,7 +21,7 @@ class LeftMenu extends Component {
     const LinkComponent = link.href === '/' ? IndexLink : Link;
     return (
       <li className={'item'} key={key || null}>
-        <LinkComponent to={link.href} className={'fill'} activeClassName={'current-link'}>
+        <LinkComponent to={link.href} onClick={e => e.stopImmediatePropagation} className={'fill'} activeClassName={'current-link'}>
           <Touchable />
           {_.startCase(link.label)}
         </LinkComponent>
@@ -83,7 +83,7 @@ const mapStateToProps = (state) => {
 };
 
 const connectedLeftMenu = connect(
-  mapStateToProps
+  mapStateToProps,
 )(LeftMenu);
 
 export default connectedLeftMenu;

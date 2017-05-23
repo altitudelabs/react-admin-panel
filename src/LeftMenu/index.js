@@ -5,8 +5,10 @@ import classnames from 'classnames';
 import './style.scss';
 
 import Header from './Header';
+import DropdownMenu from '../DropdownMenu';
 
-const checkIsLink = link => link.link && !link.links; // link does not have any children
+const checkIsLink = link => link.link && !link.links;
+const checkIsArrayOfLinks = link => link.links && !link.link;
 
 class LeftMenu extends Component {
   constructor(props) {
@@ -34,13 +36,14 @@ class LeftMenu extends Component {
     const isMatch = _.some(sectionLinks, link => this.props.router.isActive(link, true));
 
     return (
-      <div className={classnames('section', { match: isMatch })} key={section.sectionHeader}>
-        <div className={'section-header'}>
-          <span>{section.sectionHeader}</span>
-        </div>
+      <div
+        className={classnames('section', { match: isMatch })}
+        key={section.sectionHeader}
+      >
+        <div className={'section-header'} >{section.sectionHeader}</div>
         <div className={'section-links'}>
           {section.links.map(link => (
-            <div className={'section-link'} key={link.label}>
+            <div key={link.label}>
               {this.renderLink(link)}
             </div>
           ))}
@@ -49,22 +52,28 @@ class LeftMenu extends Component {
     );
   }
 
-  renderLink(link, level = 1) {
-    console.log(link, level);
-    const isLink = checkIsLink(link);
-
-    if (isLink) {
+  renderLink(link) {
+    if (checkIsLink(link)) {
+      const comparisonPath = this.props.location.pathname.substr(0, link.link.length);
+      const className = link.link === comparisonPath ? 'link highlighted' : 'link';
       return (
-        <div className={'link'}>
-          link
-        </div>
+        <a href={link.link} className={className} key={link.label}>
+          {link.label}
+        </a>
       );
     }
-    return (
-      <div>
-        links
-      </div>
-    );
+    if (checkIsArrayOfLinks(link)) {
+      return (
+        <DropdownMenu title={link.label}>
+          {link.links.map(childLink =>
+            <div key={childLink.label}>
+              {this.renderLink(childLink)}
+            </div>,
+            )
+          }
+        </DropdownMenu>
+      );
+    }
   }
 
   render() {
@@ -81,7 +90,10 @@ class LeftMenu extends Component {
             width,
           }}
         >
-          <Header />
+          <Header
+            headerLogoClassName={this.props.headerLogoClassName}
+            headerLogoSrc={this.props.headerLogoSrc}
+          />
           {links.map(this.renderSection)}
         </div>
         <div className={'content-container'}>
@@ -128,8 +140,8 @@ LeftMenu.defaultProps = {
           link: '/admin/promotions',
         },
         {
-          label: 'Anlytics',
-          link: '/admin/anlytics',
+          label: 'Analytics',
+          link: '/admin/analytics',
         },
       ],
     },
@@ -155,6 +167,8 @@ LeftMenu.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
+  headerLogoClassName: PropTypes.string,
+  location: PropTypes.object,
 };
 
 
