@@ -39,6 +39,7 @@
       color: #ffffff;
     }
 
+
   }
   .dropdown {
     @extend .link
@@ -49,5 +50,10 @@
     padding-left:19.3px;
   }
 }
+
+  .highlighted {
+    background-color: #475066;
+    color: #ffffff;
+  }
 
 
