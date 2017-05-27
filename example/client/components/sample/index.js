@@ -1,9 +1,9 @@
 import './style.scss';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import className from 'classnames';
 import { whyDidYouUpdateWrapper } from '../../utils/why-did-you-update';
-import Touchable from '../../composeComponents/Ripple/Touch';
 import action from './action';
 import reducer from './reducer';
 
@@ -21,7 +21,6 @@ class Sample extends Component {
 
     return (
       <div className={className('left-menu', { open })}>
-        <Touchable />
       </div>
     );
   }
@@ -34,7 +33,6 @@ const Sample = (props) => {
 
   return (
     <div className={className('left-menu', { open })}>
-      <Touchable />
     </div>
   );
 }

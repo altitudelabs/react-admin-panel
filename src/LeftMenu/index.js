@@ -1,7 +1,8 @@
-import React, { Component, PropTypes } from 'react';
-import { withRouter } from 'react-router';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { withRouter, matchPath } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import classnames from 'classnames';
-
 import './style.scss';
 
 import Header from './Header';
@@ -31,39 +32,31 @@ class LeftMenu extends Component {
     const sectionLinks = getAllLinks(section.links);
 
     // check if any link exact matches the current route
-    const isMatch = _.some(sectionLinks, link => this.props.router.isActive(link, true));
-
+    const isMatch = _.some(sectionLinks, link => matchPath(link, true));
     return (
       <div className={classnames('section', { match: isMatch })} key={section.sectionHeader}>
         <div className={'section-header'}>
           <span>{section.sectionHeader}</span>
         </div>
         <div className={'section-links'}>
-          {section.links.map(link => (
-            <div className={'section-link'} key={link.label}>
-              {this.renderLink(link)}
-            </div>
-          ))}
+          {section.links.map(link => this.renderLink(link))}
         </div>
       </div>
     );
   }
 
-  renderLink(link, level = 1) {
-    console.log(link, level);
-    const isLink = checkIsLink(link);
-
-    if (isLink) {
+  renderLink(link) {
+    if (!link.link) {
       return (
-        <div className={'link'}>
-          link
+        <div key={link.label} className={'section-link'}>
+          {link.label}
         </div>
       );
     }
     return (
-      <div>
-        links
-      </div>
+      <NavLink key={link.label} className={'link fill section-link'} to={link.link}>
+        {link.label}
+      </NavLink>
     );
   }
 
@@ -73,6 +66,7 @@ class LeftMenu extends Component {
       width,
       children,
     } = this.props;
+    console.log(this.props);
     return (
       <div className={'left-menu-container'}>
         <div
@@ -149,7 +143,6 @@ LeftMenu.defaultProps = {
 
 LeftMenu.propTypes = {
   links: PropTypes.array,
-  router: PropTypes.object.isRequired,
   width: PropTypes.number,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),

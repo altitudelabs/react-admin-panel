@@ -1,11 +1,11 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import className from 'classnames';
 import { IndexLink, Link } from 'react-router';
 
 import './style.scss';
 
-import Touchable from '../../composeComponents/Ripple/Touch';
 import action from './action';
 import reducer from './reducer';
 import Divider from '../../composeComponents/Divider';
@@ -22,7 +22,6 @@ class LeftMenu extends Component {
     return (
       <li className={'item'} key={key || null}>
         <LinkComponent to={link.href} className={'fill'} activeClassName={'current-link'}>
-          <Touchable />
           {_.startCase(link.label)}
         </LinkComponent>
       </li>

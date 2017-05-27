@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { LeftMenu } from 'react-admin-panel';
 
-import { Checkbox, LeftMenu } from 'react-admin-panel';
 import 'react-admin-panel/lib/bundle.css'; // TODO this should be automated better
 
 const App = (props) => {

@@ -51,7 +51,7 @@ body {
   min-width: 320px;
 }
 
-#app {
+#app, [data-reactroot] {
   min-height: 100%;
   display: flex;
 }

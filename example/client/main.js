@@ -1,54 +1,48 @@
 import React from 'react';
 import { render } from 'react-dom';
 import {
-  IndexRoute,
-  // IndexRedirect,
-  Router,
+  BrowserRouter as Router,
   Route,
-  // browserHistory,
-  useRouterHistory,
-} from 'react-router';
+} from 'react-router-dom';
+
 import { syncHistoryWithStore } from 'react-router-redux';
+import createHistory from 'history/createBrowserHistory';
 import { Provider } from 'react-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { createHistory } from 'history';
 
 import './main.scss';
 import './favicon.ico';
 
 import store from './store';
 import App from './components/App';
-import {
-  action as LeftMenuAction,
-} from './components/LeftMenu';
 // Needed for onTouchTap
 // Check this repo:
 // https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
 
 // Create an enhanced history that syncs navigation events with the store
-const browserHistory = useRouterHistory(createHistory)({
-  // NOTE for gh-pages
-  basename: '/react-admin-panel',
-});
+const browserHistory = createHistory();
 const history = syncHistoryWithStore(browserHistory, store);
 
 render(
   <Provider store={store}>
     {/* Tell the Router to use our enhanced history */}
-    <Router history={history}>
+    <Router history={history} basename={'/template-react'}>
       <Route
         path={'/'}
         onChange={(prevState, nextState) => {
           if (nextState.location.action !== 'POP') {
             window.scrollTo(0, 0);
           }
-          LeftMenuAction.close();
         }}
-      >
-        <IndexRoute component={App} />
-        <Route path="*" component={App} />
-      </Route>
+        render={() => {
+          return (
+            <div>
+              <Route path="*" component={App} />
+            </div>
+          );
+        }}
+      />
     </Router>
   </Provider>,
   document.getElementById('app'),

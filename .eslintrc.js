@@ -20,6 +20,7 @@ module.exports = {
     'no-underscore-dangle': 0,
     'no-param-reassign': ['error', { 'props': false }],
     'arrow-body-style': 0,
+    'class-methods-use-this': 0,
     'consistent-return': 0,
     'no-use-before-define': ['error', { 'functions': false }],
     'new-cap': 0,

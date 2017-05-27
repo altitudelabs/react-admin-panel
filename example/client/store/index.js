@@ -1,14 +1,12 @@
 import { createStore, combineReducers, compose } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import { reducer as LeftMenu } from '../components/LeftMenu';
-
 let composed;
 
 // Compose middleware and devTool
 if (window.devToolsExtension) {
   composed = compose(
-    window.devToolsExtension()
+    window.devToolsExtension(),
   );
 } else {
   composed = compose();
@@ -18,10 +16,9 @@ if (window.devToolsExtension) {
 const store = createStore(
   combineReducers({
     routing: routerReducer,
-    LeftMenu,
   }),
   {},
-  composed
+  composed,
 );
 
 export default store;
