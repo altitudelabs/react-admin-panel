@@ -63,10 +63,10 @@ class LeftMenu extends Component {
   render() {
     const {
       links,
+      renderHeader,
       width,
       children,
     } = this.props;
-    console.log(this.props);
     return (
       <div className={'left-menu-container'}>
         <div
@@ -75,7 +75,7 @@ class LeftMenu extends Component {
             width,
           }}
         >
-          <Header />
+          {renderHeader()}
           {links.map(this.renderSection)}
         </div>
         <div className={'content-container'}>
@@ -141,6 +141,10 @@ LeftMenu.defaultProps = {
   children: null,
 };
 
+LeftMenu.defaultProps = {
+  renderHeader: () => <Header />,
+};
+
 LeftMenu.propTypes = {
   links: PropTypes.array,
   width: PropTypes.number,
@@ -148,6 +152,7 @@ LeftMenu.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
+  renderHeader: PropTypes.func,
 };
 
 
