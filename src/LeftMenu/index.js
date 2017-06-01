@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter, matchPath } from 'react-router';
-import { NavLink } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import classnames from 'classnames';
 import './style.scss';
 
@@ -54,7 +54,7 @@ class LeftMenu extends Component {
 
   renderLink(link) {
     if (checkIsLink(link)) {
-      const comparisonPath = this.props.location.pathname.substr(0, link.link.length);
+      const comparisonPath = this.props.location.pathname;
       const className = link.link === comparisonPath ? 'link highlighted' : 'link';
       return (
         <a href={link.link} className={className} key={link.label}>
@@ -155,9 +155,6 @@ LeftMenu.defaultProps = {
   ],
   width: 200,
   children: null,
-};
-
-LeftMenu.defaultProps = {
   renderHeader: () => <Header />,
 };
 
@@ -173,4 +170,4 @@ LeftMenu.propTypes = {
 };
 
 
-export default withRouter(LeftMenu);
+export default LeftMenu;
