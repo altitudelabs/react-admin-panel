@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter, matchPath } from 'react-router';
-import { NavLink } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import classnames from 'classnames';
 import './style.scss';
 
 import Header from './Header';
+import DropdownMenu from '../DropdownMenu';
 
-const checkIsLink = link => link.link && !link.links; // link does not have any children
+const checkIsLink = link => link.link && !link.links;
+const checkIsArrayOfLinks = link => link.links && !link.link;
 
 class LeftMenu extends Component {
   constructor(props) {
@@ -34,30 +36,44 @@ class LeftMenu extends Component {
     // check if any link exact matches the current route
     const isMatch = _.some(sectionLinks, link => matchPath(link, true));
     return (
-      <div className={classnames('section', { match: isMatch })} key={section.sectionHeader}>
-        <div className={'section-header'}>
-          <span>{section.sectionHeader}</span>
-        </div>
+      <div
+        className={classnames('section', { match: isMatch })}
+        key={section.sectionHeader}
+      >
+        <div className={'section-header'} >{section.sectionHeader}</div>
         <div className={'section-links'}>
-          {section.links.map(link => this.renderLink(link))}
+          {section.links.map(link => (
+            <div key={link.label}>
+              {this.renderLink(link)}
+            </div>
+          ))}
         </div>
       </div>
     );
   }
 
   renderLink(link) {
-    if (!link.link) {
+    if (checkIsLink(link)) {
+      const comparisonPath = this.props.location.pathname;
+      const className = link.link === comparisonPath ? 'link highlighted' : 'link';
       return (
-        <div key={link.label} className={'section-link'}>
+        <a href={link.link} className={className} key={link.label}>
           {link.label}
-        </div>
+        </a>
       );
     }
-    return (
-      <NavLink key={link.label} className={'link fill section-link'} to={link.link}>
-        {link.label}
-      </NavLink>
-    );
+    if (checkIsArrayOfLinks(link)) {
+      return (
+        <DropdownMenu title={link.label}>
+          {link.links.map(childLink =>
+            <div key={childLink.label}>
+              {this.renderLink(childLink)}
+            </div>,
+            )
+          }
+        </DropdownMenu>
+      );
+    }
   }
 
   render() {
@@ -122,8 +138,8 @@ LeftMenu.defaultProps = {
           link: '/admin/promotions',
         },
         {
-          label: 'Anlytics',
-          link: '/admin/anlytics',
+          label: 'Analytics',
+          link: '/admin/analytics',
         },
       ],
     },
@@ -139,9 +155,6 @@ LeftMenu.defaultProps = {
   ],
   width: 200,
   children: null,
-};
-
-LeftMenu.defaultProps = {
   renderHeader: () => <Header />,
 };
 
@@ -153,7 +166,8 @@ LeftMenu.propTypes = {
     PropTypes.node,
   ]),
   renderHeader: PropTypes.func,
+  location: PropTypes.object,
 };
 
 
-export default withRouter(LeftMenu);
+export default LeftMenu;

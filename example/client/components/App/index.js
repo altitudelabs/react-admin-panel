@@ -6,7 +6,10 @@ import 'react-admin-panel/lib/bundle.css'; // TODO this should be automated bett
 
 const App = (props) => {
   return (
-    <LeftMenu>
+    <LeftMenu
+      headerLogoSrc={require('../../../client/asset/image/logo.png')}
+      location={props.location}
+    >
       hey!
       {props.children}
     </LeftMenu>
@@ -21,6 +24,7 @@ App.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
+  location: PropTypes.object,
 };
 
 export default App;
